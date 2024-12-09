@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settimeout and Intervel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #notification {
+      display: none;
+      background-color: #4caf50;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 20px auto;
+      width: 50%;
+    }
+    #timer {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Notification Timer</h2>
+  <button id="show-notification-btn">Show Notification</button>
+  <div id="notification">Hey! what's up</div>
+
+  <h2>Countdown Timer</h2>
+  <div id="timer">30</div>
+  <button id="start-timer-btn">Start Countdown</button>
+
+  <script>
+let notification = document.getElementById('notification');
+let showNotificationBtn = document.getElementById('show-notification-btn');
+let timerElement = document.getElementById('timer');
+let startTimerBtn = document.getElementById('start-timer-btn');
+
+showNotificationBtn.addEventListener('click', () => {
+  notification.style.display = 'block';
+
+  setTimeout(() => {
+    notification.style.display = 'none';
+  }, 10000);
+});
+
+startTimerBtn.addEventListener('click', () => {
+  let countdown = 30; 
+
+  let intervalId = setInterval(() => {
+    countdown -= 1; 
+    timerElement.textContent = countdown;
+
+    if (countdown <= 0) {
+      clearInterval(intervalId); 
+      timerElement.textContent = 'Time’s up!';
+    }
+  }, 1000); 
+});
+
+  </script>
+</body>
+</html>
